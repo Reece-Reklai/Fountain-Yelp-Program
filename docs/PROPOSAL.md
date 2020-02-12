@@ -1,30 +1,29 @@
-# CPTR 142 Project III: WWU Information Management
+# CPTR 142 Project III: WWUP
 
-This is an example. Replace the information here with your project proposal.
+We aim to create a Yelp-Like application to rate watter fountains around the Walla Walla University campus.
 
 ## Problem Definition
 
-The goal for this project is to build an Information System for Walla Walla University.
-This business application will store information about students and faculty in text files to allow for persistent data.
-Our focus will be on the student faculty relationship as it pertains to advising.
-Student and faculty users will have separate views and menu options.
+We would like to create an app in which you can create an acount with certain 
+permissions and, deppending on those permissions, add waterfountains and ratings 
+to said water fountains around the WWU campus
 
 ### Key Features
 
-* Faculty view of students
-* Student view
-* Register for a classes
-* See available classes
-* Calculated GPA
+* Profile with password
+* Water fountain ratings
+* add water fountains
+* Add stars
+* Reviews stored in a file
 
 ### Assumptions
 
-The users of the system are good actors. 
-No security (authtentication and permissions) will be implemented for this project.
+People who use this app have basic common sense.
+Users are not explicitly trying to break the program.
 
 ## Group Members
 
-* Larry Aamodt
-* Preston Carman
-* Jonathan Duncan
-* James Foster
+* Gabriel Kim
+* Christopher Berglund
+* Joshua Sevick
+* Reece R
