@@ -26,4 +26,4 @@ Users are not explicitly trying to break the program.
 * Gabriel Kim
 * Christopher Berglund
 * Joshua Sevick
-* Reece R
+* Reece Reklai
