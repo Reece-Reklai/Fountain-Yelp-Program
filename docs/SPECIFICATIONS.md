@@ -5,8 +5,8 @@
 -a fountain class with its location and identification number and a map of its reviews
 
 within main:
--a map of fountains
--a map of users with username strings as the keys
+-a map of fountains \n
+-a map of users with username strings as the keys\n
 
 -a file containing functions for save file handling
 -a file containting eror check functions
