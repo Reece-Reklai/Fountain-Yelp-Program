@@ -10,7 +10,6 @@ public:
 
 private:
   string name;
-  string username;
   string passcode;
 };
 #endif // USER_H
