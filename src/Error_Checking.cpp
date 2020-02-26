@@ -1,7 +1,7 @@
 #include "Error_Checking.h"
 #include <limits.h>
 
-int CinErrorCheck (string prompt, string Error_Message, pair<int,int> bound, bool repeat, int errorReturn) {
+int CinErrorCheck (string prompt, string Error_Message, string out_of_range_Message, pair<int,int> bound, bool repeat, int errorReturn) {
     int UserInput;
     do {
         // Get user input
@@ -11,17 +11,14 @@ int CinErrorCheck (string prompt, string Error_Message, pair<int,int> bound, boo
 
         if (cin.fail()) {
             cerr << Error_Message << endl;
-            cin.ignore(INT_MAX, '\n');
             cin.clear();
-            continue;
+            cin.ignore(INT_MAX, '\n');
         }
-
-        if ((UserInput >= bound.first) && (UserInput <= bound.second)) {
+        else if ((UserInput >= bound.first) && (UserInput <= bound.second)) {
             return UserInput;
 
         } else {
-            cerr << Error_Message << endl;
-            continue;
+            cerr << out_of_range_Message << endl;
         }
     } while (repeat);
     return errorReturn;
