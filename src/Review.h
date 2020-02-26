@@ -5,7 +5,6 @@
 using namespace std;
 #ifndef REVIEW_H
 #define REVIEW_H
-enum stars { ONE, TWO, THREE, FOUR, FIVE };
 class Review {
 public:
   Review();
@@ -13,7 +12,7 @@ public:
 private:
   pair<Fountain, User> review = {Fountain(), User()};
   string content;
-  stars rating;
+  int rating;
 };
 
 #endif // REVIEW_H

@@ -7,9 +7,10 @@
 using namespace std;
 class Fountain {
 public:
+  string getLocation();
+
 private:
   string location;
-  int x, y;
-  map<string, Review> *RevMap;
+  map<string, Review> RevMap;
 };
 #endif // FOUNTAIN_H
