@@ -1,15 +1,14 @@
 # CPTR 142: Project III Specifications
 
-The specifications outlines the project design specifications and project management.
-This is done BEFORE CODING!
+- a review class identified with a pair of user and fountain objects and a string containing its content
+- a user class with a user's name and password
+- a fountain class with its location and identification number and a map of its reviews
 
-Here are the things to include in this codument.
+within main:
+- a map of fountains 
+- a map of users with username strings as the keys
 
-* ___Complete UML diagrams___ of classes, member variables, member functions, and relationships between classes.
-  What structures and menus will be required?  
-* ___Procedural Flow Diagram___ The logical flow of your program
-* ___Anticipated challenges___ and how will you address them?  
-* ___Project Management Plan___
-  * Name __individual group member tasks/responsibilities__.
-    Split up the tasks and implementation into portions per group member.
-  * __Timeline__ of individual and group delivery dates.
+- a file containing functions for save file handling
+- a file containting eror check functions
+- a file containing log in/sign up functions
+- a file with front end functions
