@@ -6,7 +6,6 @@ stages:
   - test
   - coverage
   - deploy
-  - stage
 
 check_formatting:
   stage: analysis
