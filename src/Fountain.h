@@ -1,5 +1,5 @@
-#ifndef FOUNTAIN_H
-#define FOUNTAIN_H
+#ifndef SRC_FOUNTAIN_H_
+#define SRC_FOUNTAIN_H_
 
 #include "Review.h"
 #include <map>
@@ -13,4 +13,4 @@ private:
   string location;
   map<string, Review> RevMap;
 };
-#endif // FOUNTAIN_H
+#endif // SRC_FOUNTAIN_H_

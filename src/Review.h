@@ -1,18 +1,18 @@
-#include "Fountain.h"
-#include "User.h"
 #include <string>
 #include <utility>
+#include "Fountain.h"
+#include "User.h"
 using namespace std;
-#ifndef REVIEW_H
-#define REVIEW_H
+#ifndef SRC_REVIEW_H_
+#define SRC_REVIEW_H_
 class Review {
-public:
-  Review();
+  public:
+    Review();
 
-private:
-  pair<Fountain, User> review = {Fountain(), User()};
-  string content;
-  int rating;
+  private:
+    pair<Fountain, User> review = {Fountain(), User()};
+    string content;
+    int rating;
 };
 
-#endif // REVIEW_H
+#endif  // SRC_REVIEW_H_

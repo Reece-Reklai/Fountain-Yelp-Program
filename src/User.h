@@ -1,7 +1,7 @@
 #include <string>
 using namespace std;
-#ifndef USER_H
-#define USER_H
+#ifndef SRC_USER_H_
+#define SRC_USER_H_
 
 class User {
 public:
@@ -17,4 +17,4 @@ private:
   string passcode;
   string username;
 };
-#endif // USER_H
+#endif // SRC_USER_H_
