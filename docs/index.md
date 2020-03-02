@@ -1,7 +1,7 @@
 ---
-title: /
+title: CPTR 142 Project 3
 layout: home
-permalink: /
+permalink: /student142_project3
 ---
 
 
