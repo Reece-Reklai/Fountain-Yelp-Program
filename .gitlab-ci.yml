@@ -77,25 +77,14 @@ code_coverage:
 variables:
   JEKYLL_ENV: production
   LC_ALL: C.UTF-8
-
-test:
-  image: ruby:2.3
-  stage: test
-  script:
-    - bundle install
-    - cd docs
-    - bundle exec jekyll build -d ../test
-  artifacts:
-    paths:
-      - test
-  except:
-    - master
-
+  
 pages:
   image: ruby:2.3
   stage: deploy
-  script:
+
+  before_script:
     - bundle install
+  script:
     - cd docs
     - bundle exec jekyll build -d ../public
   artifacts:
