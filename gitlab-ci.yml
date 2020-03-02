@@ -1,0 +1,107 @@
+image: gitlab.cs.wallawalla.edu:5050/pridja/catch2-example:latest
+
+stages:
+  - analysis
+  - build
+  - test
+  - coverage
+  - deploy
+
+check_formatting:
+  stage: analysis
+  script:
+    - echo `which clang-format-6.0`
+    - ln -s `which clang-format-6.0` /usr/bin/clang-format
+    - echo $CI_PROJECT_DIR
+    - cd "$CI_PROJECT_DIR"
+    - linter_errors=$(git-clang-format-6.0 --commit "HEAD~1" -q --diff | grep -v --color=never "no modified files to format" || true)
+    - echo "$linter_errors"
+    - if [ ! -z "$linter_errors" ]; then echo "Detected formatting issues; please fix"; exit 1; else echo "Formatting is correct"; exit 0; fi
+
+run_cpplint:
+  stage: analysis
+  script:
+    - cpplint ./src/main.cpp
+    - find -name '*.h' -exec cpplint {} +
+    - find -name '*.cpp' -exec cpplint {} +
+
+run_cppcheck:
+  stage: analysis
+  script:
+    - find -name '*.h' -exec cppcheck --enable=all --suppress=missingIncludeSystem --language=c++ {} +
+    - find -name '*.cpp' -exec cppcheck --enable=all --suppress=missingIncludeSystem --language=c++ {} +
+
+
+build_programs:
+  stage: build
+  script:
+    - mkdir build
+    - cd build
+    - cmake ..
+    - make
+  artifacts:
+    paths:
+      - build/tests
+    expire_in: 1 hour
+
+tests:
+  stage: test
+  script:
+    - build/tests [test]
+
+code_coverage:
+  stage: coverage
+  script:
+    - mkdir -p build && cd build
+    - cmake .. -DGENERATE_CODE_COVERAGE=true
+    - make tests
+    - ./tests
+    - cd CMakeFiles/tests.dir
+    - mkdir -p cov
+    - find -name '*.o' -exec cp -t cov {} +
+    - find -name '*.gcno' -exec cp -t cov {} +
+    - find -name '*.gcda' -exec cp -t cov {} +
+    - cd cov || exit 1
+    - find -name '*.o' -exec gcov -bf {} \; > /dev/null
+    - lcov --quiet --capture --directory . --output-file coverage.info
+    - lcov --quiet --remove coverage.info "*include*" -o coverage.info
+    - lcov --list coverage.info
+    - echo "Generating HTML Report"
+    - genhtml coverage.info --output-directory out
+    - echo "You can download the report from the pipleine artifacts in gitlab for the next week"
+  artifacts:
+    paths:
+      - build/CMakeFiles/tests.dir/cov/out/
+    expire_in: 7 days
+
+variables:
+  JEKYLL_ENV: production
+  LC_ALL: C.UTF-8
+
+test:
+  image: ruby:2.3
+  stage: test
+  script:
+    - bundle install
+    - cd docs
+    - bundle exec jekyll build -d ../test
+  artifacts:
+    paths:
+      - test
+  except:
+    - master
+
+pages:
+  image: ruby:2.3
+  stage: deploy
+  script:
+    - bundle install
+    - cd docs
+    - bundle exec jekyll build -d ../public
+  artifacts:
+    paths:
+      - public
+  only:
+    - master
+
+
