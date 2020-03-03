@@ -1,3 +1,9 @@
+---
+layout: page
+title: /proposal
+permalink: /proposal/
+---
+
 # CPTR 142 Project III: WWUP
 
 We aim to create a Yelp-Like application to rate watter fountains around the Walla Walla University campus.
