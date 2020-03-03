@@ -1,3 +1,9 @@
+---
+layout: page
+title: /specifications
+permalink: /specifications/
+---
+
 # CPTR 142: Project III Specifications
 
 - a review class identified with a pair of user and fountain objects and a string containing its content
