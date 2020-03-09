@@ -5,9 +5,6 @@ set(CMAKE_CXX_STANDARD 17)
 
 include_directories(catch2)
 
-file(GLOB_RECURSE main ./src/main.cpp)
-file(GLOB_RECURSE tests ./src/test_driver.cpp)
-
 IF (GENERATE_CODE_COVERAGE)
     message(STATUS "Compiling with code coverage")
     SET(GCC_COVERAGE_COMPILE_FLAGS "-g -O0 -coverage -fprofile-arcs -ftest-coverage")
@@ -16,11 +13,23 @@ IF (GENERATE_CODE_COVERAGE)
     SET(CMAKE_EXE_LINKER_FLAGS  "${CMAKE_EXE_LINKER_FLAGS} ${GCC_COVERAGE_LINK_FLAGS}")
 ENDIF()
 
-add_executable(gk
-        ${main})
-add_executable(tests
-        ${tests})
+add_executable(main
+        ./src/main.cpp
+        ./src/Campus.cpp
+        ./src/CredentialFunctions.cpp
+        ./src/Error_Checking.cpp
+        ./src/Fountain.cpp
+        ./src/Review.cpp
+        ./src/User.cpp)
+add_executable(test
+        ./src/test_driver.cpp
+        ./src/Campus.cpp
+        ./src/CredentialFunctions.cpp
+        ./src/Error_Checking.cpp
+        ./src/Fountain.cpp
+        ./src/Review.cpp
+        ./src/User.cpp)
 
 IF (GENERATE_CODE_COVERAGE)
-    target_link_libraries(tests gcov)
+    target_link_libraries(test gcov)
 ENDIF()

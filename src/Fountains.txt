@@ -1,0 +1,3 @@
+42|Rigby hall|Rigby157
+1|Connard Lobby|Connard123
+3|Sittner hall|Sittner445
