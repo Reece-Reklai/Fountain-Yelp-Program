@@ -13,9 +13,11 @@ void Fountain::printFountain() {
        << "Name: " << name << endl;
 }
 void Fountain::addReview(Review *review) { revList.push_back(review); }
-string Fountain::getName(){
-    return name;
-}
-string Fountain::getId(){
-    return id;
+string Fountain::getName() { return name; }
+string Fountain::getId() { return id; }
+void Fountain::printReviews() {
+  for (auto i : revList) {
+    i->printReview();
+    cout << "____________________" << endl;
+  }
 }

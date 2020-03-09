@@ -73,12 +73,17 @@ void Campus::printRlist() {
     i->printReview();
   }
 }
-void Campus::displayFountain(string id) {
-  fountainById.at(id)->printFountain();
-  cout << endl << "REVIEWS:" << endl;
-  for (auto i : Rlist) {
-    if (i->getFountain()->getId() == id) {
-      i->printReview();
-    }
+void Campus::displayFountains() {
+  cout << "Name: ID" << endl;
+  for (auto i : Flist) {
+    cout << i->getName() << ": " << i->getId() << endl;
   }
+}
+void Campus::printFountain(string id) {
+
+  cout << "--------------------" << endl
+       << fountainById.at(id)->getName() << ": " << fountainById.at(id)->getId()
+       << endl
+       << "____________________" << endl;
+  fountainById.at(id)->printReviews();
 }
