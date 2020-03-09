@@ -1,16 +1,30 @@
+<<<<<<< HEAD
 #ifndef SRC_FOUNTAIN_H_
 #define SRC_FOUNTAIN_H_
 
+=======
+#ifndef FOUNTAIN_H
+#define FOUNTAIN_H
+>>>>>>> origin
 #include "Review.h"
 #include <map>
 #include <string>
+#include <vector>
 using namespace std;
 class Fountain {
 public:
-  string getLocation();
+  Fountain(string, string, string); // constructor sets the id, location and
+                                    // name
+  void printFountain();     // Prints the fountain's id, location, and name
+  void addReview(Review *); // Pushes back a pointer to a Review object into the
+                            // revList vector
+  string getName();    // returns the fountain's name
+  string getId();      // returns the fountain's ID number
+  void printReviews(); // Prints the content of the fountain's reviews
 
 private:
-  string location;
-  map<string, Review> RevMap;
+  vector<Review *>
+      revList; // holds a list of pointers to all of a fountain's reviews
+  string id, location, name;
 };
 #endif // SRC_FOUNTAIN_H_
