@@ -8,11 +8,11 @@
  * Date:            ?
  *
  */
-#define CATCH_CONFIG_MAIN
-#include <catch.hpp>
-
 #include <iostream>
 #include <string>
+
+#define CATCH_CONFIG_MAIN
+#include <catch.hpp>
 #include "Fountain.h"
 #include "User.h"
 
