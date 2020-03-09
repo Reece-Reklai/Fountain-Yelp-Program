@@ -2,6 +2,7 @@
 #define USER_H
 #include "Review.h"
 #include <string>
+#include <vector>
 using namespace std;
 class User {
 public:
@@ -14,7 +15,8 @@ public:
   void setId(string);
   void setName(string);
   void printUser();
-void addReview(Review*);
+  void addReview(Review *);
+
 private:
   vector<Review *> revList;
   string id;
