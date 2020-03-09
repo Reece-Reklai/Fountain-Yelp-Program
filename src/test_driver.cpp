@@ -30,10 +30,10 @@ TEST_CASE("Create a Fountain", "[fountain]") {
         "Not a good place for a date",
         "I asked my girlfriend to join me but she never showed up", 0);
     User* theUser("007", "James Bond", "yesthisisanothermovie")
-    theReview->assignUser(theUser);
+        theReview->assignUser(theUser);
     theReview->assignFountain(theFountain)
 
-    SECTION("Adding a review works") {
+        SECTION("Adding a review works") {
         REQUIRE(theReview->getUser().getId() == "007");
         REQUIRE(theReview->getUser().getName() == "James Bond");
         REQUIRE(theReview->getUser().getPasscode() == "yesthisisanothermovie");
