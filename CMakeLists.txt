@@ -21,7 +21,7 @@ add_executable(main
         ./src/Fountain.cpp
         ./src/Review.cpp
         ./src/User.cpp)
-add_executable(test
+add_executable(tests
         ./src/test_driver.cpp
         ./src/Campus.cpp
         ./src/CredentialFunctions.cpp
@@ -31,5 +31,5 @@ add_executable(test
         ./src/User.cpp)
 
 IF (GENERATE_CODE_COVERAGE)
-    target_link_libraries(test gcov)
+    target_link_libraries(tests gcov)
 ENDIF()

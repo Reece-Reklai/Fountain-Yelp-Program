@@ -42,13 +42,13 @@ build_programs:
   artifacts:
     paths:
       - build/main
-      - build/test
+      - build/tests
     expire_in: 1 hour
 
 tests:
   stage: test
   script:
-    - build/test [test]
+    - build/tests [tests]
 
 code_coverage:
   stage: coverage
