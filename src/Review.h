@@ -1,3 +1,5 @@
+class User;
+class Fountain;
 #include "Fountain.h"
 #include "User.h"
 #include <string>
@@ -7,11 +9,16 @@ using namespace std;
 #define REVIEW_H
 class Review {
 public:
-  Review();
+  Review(string, string, int);
+  void assignUser(User *);
+  void assignFountain(Fountain *);
+  void printReview();
+  User* getUser();
 
 private:
-  pair<Fountain, User> review = {Fountain(), User()};
-  string content;
+  User *user;
+  Fountain *fountain;
+  string content, header;
   int rating;
 };
 

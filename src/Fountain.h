@@ -1,16 +1,19 @@
 #ifndef FOUNTAIN_H
 #define FOUNTAIN_H
-
+#include <vector>
 #include "Review.h"
 #include <map>
 #include <string>
 using namespace std;
 class Fountain {
 public:
-  string getLocation();
+Fountain(string ,string,string);
+void printFountain();
+void addReview(Review*);
+string getName();
 
 private:
-  string location;
-  map<string, Review> RevMap;
+vector<Review*> revList;//holds a list of pointers to all of a fountain's reviews
+string id,location,name;
 };
 #endif // FOUNTAIN_H

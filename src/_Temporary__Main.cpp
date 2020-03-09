@@ -1,7 +1,14 @@
-#include "Error_Checking.h"
-
-int main () {
-    CinErrorCheck ("Type an awesome Number from 0 to 10: ", "Bad Number!", "Enter a number in range.", {0,10});
-
-    return 0;
+#include "Campus.h"
+#include "Fountain.h"
+#include "Review.h"
+#include "User.h"
+#include <iostream>
+using namespace std;
+int main() {
+  Campus wwup;
+  wwup.printUList();
+  cout << endl;
+  wwup.printFList();
+  cout << endl;
+  wwup.printRlist();
 }
