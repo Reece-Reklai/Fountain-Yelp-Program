@@ -13,6 +13,7 @@ public:
   void printUList();
   void printFList();
   void printRlist();
+  void displayFountain(string);
 
 private:
   vector<Fountain *> Flist;

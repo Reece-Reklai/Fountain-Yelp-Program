@@ -13,11 +13,12 @@ Review::Review(string header, string content, int rating) {
 void Review::assignUser(User *user) { this->user = user; }
 void Review::assignFountain(Fountain *fountain) { this->fountain = fountain; }
 User *Review::getUser() { return user; }
+Fountain *Review::getFountain() { return fountain; }
 void Review::printReview() {
   cout << "Username: " << user->getName() << endl
        << "Fountain: " << fountain->getName() << endl
        << "Header: " << header << endl
        << "Content: " << content << endl
        << "Rating: " << rating << endl;
-       cout<<"_________________________"<<endl;
+  cout << "_________________________" << endl;
 }

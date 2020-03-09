@@ -11,6 +11,7 @@ Fountain(string ,string,string);
 void printFountain();
 void addReview(Review*);
 string getName();
+string getId();
 
 private:
 vector<Review*> revList;//holds a list of pointers to all of a fountain's reviews

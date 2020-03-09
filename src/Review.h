@@ -14,6 +14,7 @@ public:
   void assignFountain(Fountain *);
   void printReview();
   User* getUser();
+Fountain* getFountain();
 
 private:
   User *user;

@@ -68,8 +68,17 @@ void Campus::printFList() {
     i->printFountain();
   }
 }
-void Campus::printRlist(){
-    for(auto i: Rlist){
-        i->printReview();
+void Campus::printRlist() {
+  for (auto i : Rlist) {
+    i->printReview();
+  }
+}
+void Campus::displayFountain(string id) {
+  fountainById.at(id)->printFountain();
+  cout << endl << "REVIEWS:" << endl;
+  for (auto i : Rlist) {
+    if (i->getFountain()->getId() == id) {
+      i->printReview();
     }
+  }
 }

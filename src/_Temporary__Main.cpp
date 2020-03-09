@@ -3,6 +3,7 @@
 #include "Review.h"
 #include "User.h"
 #include <iostream>
+#include <string>
 using namespace std;
 int main() {
   Campus wwup;
@@ -11,4 +12,8 @@ int main() {
   wwup.printFList();
   cout << endl;
   wwup.printRlist();
+  cout << "pick a fountain Id: ";
+  string id;
+  cin >> id;
+  wwup.displayFountain(id);
 }

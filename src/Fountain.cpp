@@ -16,3 +16,6 @@ void Fountain::addReview(Review *review) { revList.push_back(review); }
 string Fountain::getName(){
     return name;
 }
+string Fountain::getId(){
+    return id;
+}
