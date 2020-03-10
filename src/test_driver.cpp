@@ -59,7 +59,8 @@ TEST_CASE("Campus", "[campus]") {
     std::string b = "Fountains.txt";
     std::string c = "Review.txt";
 
-    std::ifstream in(a.c_str(), std::ios::in | std::ios::binary);
+    std::ifstream in;
+    in.open(a.c_str());
     std::ifstream in2(b.c_str(), std::ios::in | std::ios::binary);
     std::ifstream in3(c.c_str(), std::ios::in | std::ios::binary);
 
