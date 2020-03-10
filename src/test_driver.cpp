@@ -55,7 +55,6 @@ TEST_CASE("Create a Fountain", "[fountain]") {
 
 TEST_CASE("Campus", "[campus]") {
     // Setup
-    cout << "Made it 1\n";
 
     std::ifstream in;
     in.open("Users.txt");
@@ -63,7 +62,6 @@ TEST_CASE("Campus", "[campus]") {
     SECTION("Users has stuff in it") {
         REQUIRE(in.good());
     }
-    std::cout << "Made it 2\n";
 
     in.close();
     in.open("Fountains.txt");
@@ -96,19 +94,18 @@ TEST_CASE("Campus", "[campus]") {
     std::cout.rdbuf(backup);
     filestr.close();
 
-    std::ifstream bufout("test.txt");
-
-    std::cout << "Reached section 2\n";
+    std::ifstream bufout;
+    bufout.open("test.txt");
+    std::string sLine;
+    std::getline(bufout, sLine);
+    std::cout << sLine << endl;
 
     SECTION("Cout is not empty") {
         REQUIRE(bufout.good());
     }
 
     // Teardown
-    std::remove("./src/Users.txt");
-    std::remove("./src/Fountains.txt");
-    std::remove("./src/Review.txt");
-    std::remove("./src/test.txt");
+    std::remove("test.txt");
 }
 
 TEST_CASE("Campus2", "[campus]") {
