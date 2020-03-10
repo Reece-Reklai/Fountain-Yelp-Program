@@ -43,11 +43,15 @@ build_programs:
     paths:
       - build/main
       - build/tests
+      - build/Users.txt
+      - build/Review.txt
+      - build/Fountains.txt
     expire_in: 1 hour
 
 tests:
   stage: test
   script:
+    - ls -a
     - build/tests [fountain]
     - build/tests [campus]
 
