@@ -50,7 +50,7 @@ tests:
   script:
     - build/tests [fountain]
     - cd build
-    - tests [campus]
+    - ./tests [campus]
 
 code_coverage:
   stage: coverage
