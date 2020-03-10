@@ -62,9 +62,9 @@ TEST_CASE("Campus", "[campus]") {
     std::ifstream in3("../../src/Review.txt", std::ios::in | std::ios::binary);
 
     SECTION("Files have stuff in them") {
-        REQUIRE(in.peek() != std::ifstream::traits_type::eof());
-        REQUIRE(in2.peek() != std::ifstream::traits_type::eof());
-        REQUIRE(in3.peek() != std::ifstream::traits_type::eof());
+        REQUIRE(in.good());
+        REQUIRE(in2.good());
+        REQUIRE(in3.good());
     }
 
     // Move appropriate files to build directory
@@ -81,9 +81,9 @@ TEST_CASE("Campus", "[campus]") {
     std::ifstream nin3("Review.txt", std::ios::in | std::ios::binary);
 
     SECTION("New files exist") {
-        REQUIRE(nin.peek() != std::ifstream::traits_type::eof());
-        REQUIRE(nin2.peek() != std::ifstream::traits_type::eof());
-        REQUIRE(nin3.peek() != std::ifstream::traits_type::eof());
+        REQUIRE(nin.good());
+        REQUIRE(nin2.good());
+        REQUIRE(nin3.good());
     }
 
     // Assign cout to text file
@@ -105,7 +105,7 @@ TEST_CASE("Campus", "[campus]") {
     std::ifstream bufout("test.txt", std::ios::in | std::ios::binary);
 
     SECTION("Cout is not empty") {
-        REQUIRE(bufout.peek() != std::ifstream::traits_type::eof());
+        REQUIRE(bufout.good());
     }
 
     // Teardown
