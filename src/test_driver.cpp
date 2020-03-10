@@ -18,6 +18,7 @@
 #include <catch.hpp>
 #include "Fountain.h"
 #include "User.h"
+#include "Campus.h"
 
 TEST_CASE("Create a Fountain", "[fountain]") {
     // Setup
@@ -101,10 +102,10 @@ TEST_CASE("Campus", "[campus]") {
     std::cout.rdbuf(backup);
     filestr.close();
 
-    std::ifstream out("test.txt", std::ios::in | std::ios::binary);
+    std::ifstream bufout("test.txt", std::ios::in | std::ios::binary);
 
     SECTION("Stuff is printed") {
-        REQUIRE(!out.eof());
+        REQUIRE(!bufout.eof());
     }
 
     // Teardown
