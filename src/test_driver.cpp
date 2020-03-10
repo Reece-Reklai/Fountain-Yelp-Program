@@ -56,14 +56,14 @@ TEST_CASE("Create a Fountain", "[fountain]") {
 TEST_CASE("Campus", "[campus]") {
     // Setup
 
-    std::ifstream in("Users.txt", std::ios::in | std::ios::binary);
-    std::ifstream in2("Fountains.txt", std::ios::in | std::ios::binary);
-    std::ifstream in3("Review.txt", std::ios::in | std::ios::binary);
+    std::ifstream in("Users.txt".c_str(), std::ios::in | std::ios::binary);
+    std::ifstream in2("Fountains.txt".c_str(), std::ios::in | std::ios::binary);
+    std::ifstream in3("Review.txt".c_str(), std::ios::in | std::ios::binary);
 
     SECTION("Files have stuff in them") {
-        REQUIRE(in);
-        REQUIRE(in2);
-        REQUIRE(in3);
+        REQUIRE(in.good());
+        REQUIRE(in2.good());
+        REQUIRE(in3.good());
     }
 
     // Move appropriate files to build directory
