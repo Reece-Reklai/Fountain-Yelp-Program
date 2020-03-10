@@ -104,12 +104,12 @@ TEST_CASE("Campus", "[campus]") {
            REQUIRE(bufout.good());
        }
    */
-/*  // Teardown
-    std::remove("./src/Users.txt");
-    std::remove("./src/Fountains.txt");
-    std::remove("./src/Review.txt");
-    std::remove("./src/test.txt");
-    */
+    /*  // Teardown
+        std::remove("./src/Users.txt");
+        std::remove("./src/Fountains.txt");
+        std::remove("./src/Review.txt");
+        std::remove("./src/test.txt");
+        */
 }
 
 TEST_CASE("Campus2", "[campus]") {
