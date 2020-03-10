@@ -103,9 +103,13 @@ TEST_CASE("Campus", "[campus]") {
     filestr.close();
 
     std::ifstream bufout("test.txt", std::ios::in | std::ios::binary);
+    std::string sLine;
+    if (!bufout.eof()) {
+        getline(infile, sLine);
+    }
 
     SECTION("Stuff is printed") {
-        REQUIRE(!bufout.eof());
+        REQUIRE(sLine != "");
     }
 
     // Teardown

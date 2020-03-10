@@ -57,7 +57,7 @@ code_coverage:
     - mkdir -p build && cd build
     - cmake .. -DGENERATE_CODE_COVERAGE=true
     - make tests
-    - ./tests
+    - ./tests > out.txt
     - cd CMakeFiles/tests.dir
     - mkdir -p cov
     - find -name '*.o' -exec cp -t cov {} +
