@@ -48,7 +48,7 @@ build_programs:
 tests:
   stage: test
   script:
-    - build/tests [tests]
+    - build/tests [fountain]
 
 code_coverage:
   stage: coverage
