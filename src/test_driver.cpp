@@ -96,13 +96,15 @@ TEST_CASE("Campus", "[campus]") {
 
     std::ifstream bufout;
     bufout.open("test.txt");
-    std::string sLine;
-    std::getline(bufout, sLine);
-    std::cout << sLine << endl;
 
     SECTION("Cout is not empty") {
         REQUIRE(bufout.good());
     }
+    std::string sLine;
+    std::getline(bufout, sLine);
+    std::cout << sLine << endl;
+
+    bufout.close();
 
     // Teardown
     std::remove("test.txt");
