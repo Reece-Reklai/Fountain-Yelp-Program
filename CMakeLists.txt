@@ -7,7 +7,7 @@ include_directories(catch2)
 
 file(COPY ./src/Fountains.txt
      DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
-file(COPY ./Review.txt
+file(COPY ./src/Review.txt
      DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
 file(COPY ./src/Users.txt
      DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
