@@ -42,15 +42,15 @@ build_programs:
   artifacts:
     paths:
       - build/main
-      - cd build
-      - tests
+      - build/tests
     expire_in: 1 hour
 
 tests:
   stage: test
   script:
     - build/tests [fountain]
-    - build/tests [campus]
+    - cd build
+    - tests [campus]
 
 code_coverage:
   stage: coverage
