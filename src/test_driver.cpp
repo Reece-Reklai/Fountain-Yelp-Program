@@ -59,9 +59,6 @@ TEST_CASE("Campus", "[campus]") {
     std::ifstream in("Users.txt", std::ios::in | std::ios::binary);
     std::ifstream in2("Fountains.txt", std::ios::in | std::ios::binary);
     std::ifstream in3("Review.txt", std::ios::in | std::ios::binary);
-    if (!in) {
-        std::cout << "In failed";
-    }
 
     SECTION("Files have stuff in them") {
         REQUIRE(in);

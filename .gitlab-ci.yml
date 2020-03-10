@@ -51,6 +51,7 @@ build_programs:
 tests:
   stage: test
   script:
+    - cd build
     - ls -a
     - build/tests [fountain]
     - build/tests [campus]
