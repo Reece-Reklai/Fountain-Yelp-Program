@@ -55,14 +55,10 @@ TEST_CASE("Create a Fountain", "[fountain]") {
 
 TEST_CASE("Campus", "[campus]") {
     // Setup
-    std::string a = "Users.txt";
-    std::string b = "Fountains.txt";
-    std::string c = "Review.txt";
 
-    std::ifstream in;
-    in.open("./src/Users.txt");
-    std::ifstream in2(b.c_str(), std::ios::in | std::ios::binary);
-    std::ifstream in3(c.c_str(), std::ios::in | std::ios::binary);
+    std::ifstream in("./src/Users.txt")
+    std::ifstream in2("./src/Fountains.txt", std::ios::in | std::ios::binary);
+    std::ifstream in3("./src/Review.txt", std::ios::in | std::ios::binary);
 
     SECTION("Files have stuff in them") {
         REQUIRE(in.good());
@@ -93,10 +89,10 @@ TEST_CASE("Campus", "[campus]") {
     }
 
     // Teardown
-    std::remove("Users.txt");
-    std::remove("Fountains.txt");
-    std::remove("Review.txt");
-    std::remove("test.txt");
+    std::remove("./src/Users.txt");
+    std::remove("./src/Fountains.txt");
+    std::remove("./src/Review.txt");
+    std::remove("./src/test.txt");
 }
 
 TEST_CASE("Campus2", "[campus]") {
