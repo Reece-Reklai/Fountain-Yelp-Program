@@ -55,6 +55,7 @@ TEST_CASE("Create a Fountain", "[fountain]") {
 
 TEST_CASE("Campus", "[campus]") {
     // Setup
+    std::cout << "Made it 1\n";
 
     std::ifstream in;
     in.open("./build/Users.txt");
@@ -62,6 +63,7 @@ TEST_CASE("Campus", "[campus]") {
     SECTION("Users has stuff in it") {
         REQUIRE(in.good());
     }
+    std::cout << "Made it 2\n";
 
     in.close();
     in.open("./build/Fountains.txt");
