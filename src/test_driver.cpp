@@ -8,6 +8,9 @@
  * Date:            ?
  *
  */
+#include <cstdio>
+#include <fstream>
+#include <ios>
 #include <iostream>
 #include <string>
 
@@ -49,13 +52,69 @@ TEST_CASE("Create a Fountain", "[fountain]") {
     delete theUser;
 }
 
-TEST_CASE("main", "[main]") {
+TEST_CASE("Campus", "[campus]") {
     // Setup
 
+    std::ifstream in("../../src/Users.txt", std::ios::in | std::ios::binary);
+    std::ifstream in2("../../src/Fountains.txt",
+                      std::ios::in | std::ios::binary);
+    std::ifstream in3("../../src/Review.txt", std::ios::in | std::ios::binary);
+
+    SECTION("Files exist") {
+        REQUIRE(!in.eof());
+        REQUIRE(!in2.eof());
+        REQUIRE(!in3.eof());
+    }
+
+    // Move appropriate files to build directory
+    std::ofstream out("Users.txt", std::ios::out | std::ios::binary);
+    out << in.rdbuf();
+    std::ofstream out2("Fountains.txt", std::ios::out | std::ios::binary);
+    out2 << in2.rdbuf();
+    std::ofstream out3("Review.txt", std::ios::out | std::ios::binary);
+    out3 << in3.rdbuf();
+
+    // Open new files
+    std::ifstream nin("Users.txt", std::ios::in | std::ios::binary);
+    std::ifstream nin2("Fountains.txt", std::ios::in | std::ios::binary);
+    std::ifstream nin3("Review.txt", std::ios::in | std::ios::binary);
+
+    SECTION("New files exist") {
+        REQUIRE(!nin.eof());
+        REQUIRE(!nin2.eof());
+        REQUIRE(!nin3.eof());
+    }
+
+    // Assign cout to text file
+    std::streambuf *psbuf, *backup;
+    std::ofstream filestr;
+    filestr.open("test.txt");
+    backup = std::cout.rdbuf();  // back up cout's streambuf
+
+    psbuf = filestr.rdbuf();  // get file's streambuf
+    std::cout.rdbuf(psbuf);   // assign streambuf to cout
+
+    // Now call constructor
+    Campus theCampus;
+
+    // Restore cout's original streambuf
+    std::cout.rdbuf(backup);
+    filestr.close();
+
+    std::ifstream out("test.txt", std::ios::in | std::ios::binary);
+
+    SECTION("Stuff is printed") {
+        REQUIRE(!out.eof());
+    }
+
     // Teardown
+    std::remove("Users.txt");
+    std::remove("Fountains.txt");
+    std::remove("Review.txt");
+    std::remove("test.txt");
 }
 
-TEST_CASE("Campus", "[campus") {
+TEST_CASE("Campus2", "[campus]") {
     // Setup
 
     // Teardown
