@@ -56,14 +56,17 @@ TEST_CASE("Create a Fountain", "[fountain]") {
 TEST_CASE("Campus", "[campus]") {
     // Setup
 
-    std::ifstream in("./src/Users.txt");
-    std::ifstream in2("./src/Fountains.txt");
-    std::ifstream in3("./src/Review.txt");
+    std::ifstream in;
+    in.open("./src/Users.txt");
+    std::ifstream in2;
+    in2.open("./src/Fountains.txt");
+    std::ifstream in3;
+    in3.open("./src/Review.txt");
 
     SECTION("Files have stuff in them") {
         REQUIRE(in.good());
-        // REQUIRE(in2.good());
-        // REQUIRE(in3.good());
+        REQUIRE(in2.good());
+        REQUIRE(in3.good());
     }
 
     // Assign cout to text file
@@ -82,7 +85,7 @@ TEST_CASE("Campus", "[campus]") {
     std::cout.rdbuf(backup);
     filestr.close();
 
-    std::ifstream bufout("test.txt", std::ios::in | std::ios::binary);
+    std::ifstream bufout("test.txt");
 
     std::cout << "Reached section 2\n";
 
