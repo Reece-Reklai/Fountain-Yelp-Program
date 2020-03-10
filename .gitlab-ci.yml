@@ -43,6 +43,9 @@ build_programs:
     paths:
       - build/main
       - build/tests
+      - build/Users.txt
+      - build/Fountains.txt
+      - build/Review.txt
     expire_in: 1 hour
 
 tests:
