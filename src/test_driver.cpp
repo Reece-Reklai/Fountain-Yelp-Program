@@ -105,7 +105,7 @@ TEST_CASE("Campus", "[campus]") {
     std::ifstream bufout("test.txt", std::ios::in | std::ios::binary);
     std::string sLine;
     if (!bufout.eof()) {
-        getline(infile, sLine);
+        getline(bufout, sLine);
     }
 
     SECTION("Stuff is printed") {
