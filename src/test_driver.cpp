@@ -58,16 +58,25 @@ TEST_CASE("Campus", "[campus]") {
 
     std::ifstream in;
     in.open("./src/Users.txt");
-    std::ifstream in2;
-    in2.open("./src/Fountains.txt");
-    std::ifstream in3;
-    in3.open("./src/Review.txt");
 
-    SECTION("Files have stuff in them") {
+    SECTION("Users has stuff in it") {
         REQUIRE(in.good());
-        REQUIRE(in2.good());
-        REQUIRE(in3.good());
     }
+
+    in.close();
+    in.open("./src/Fountains.txt");
+
+    SECTION("Fountains has stuff in it") {
+        REQUIRE(in.good());
+    }
+
+    in.close();
+    in.open("./src/Review.txt");
+
+    SECTION("Review has stuff in it") {
+        REQUIRE(in.good());
+    }
+    in.close();
 
     // Assign cout to text file
     std::streambuf *psbuf, *backup;
