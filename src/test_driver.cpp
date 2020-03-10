@@ -18,7 +18,7 @@
 
 TEST_CASE("Create a Fountain", "[fountain]") {
     // Setup
-    Fountain* theFountain("69420nice", "Mordor", "Literally Sauron");
+    Fountain* theFountain = new Fountain("69420nice", "Mordor", "Literally Sauron");
 
     SECTION("Details are correct") {
         REQUIRE(theFountain->getId() == "69420nice");
@@ -26,14 +26,14 @@ TEST_CASE("Create a Fountain", "[fountain]") {
     }
 
     // Create a review
-    Review* theReview(
+    Review* theReview = new Review(
         "Not a good place for a date",
         "I asked my girlfriend to join me but she never showed up", 0);
-    User* theUser("007", "James Bond", "yesthisisanothermovie")
+    User* theUser = new User("007", "James Bond", "yesthisisanothermovie")
         theReview->assignUser(theUser);
-    theReview->assignFountain(theFountain)
+    theReview->assignFountain(theFountain);
 
-        SECTION("Adding a review works") {
+    SECTION("Adding a review works") {
         REQUIRE(theReview->getUser().getId() == "007");
         REQUIRE(theReview->getUser().getName() == "James Bond");
         REQUIRE(theReview->getUser().getPasscode() == "yesthisisanothermovie");
@@ -43,6 +43,9 @@ TEST_CASE("Create a Fountain", "[fountain]") {
     theFountain->printReviews();
 
     // Teardown
+    delete theFountain;
+    delete theReview;
+    delete theUser;
 }
 
 TEST_CASE("Professor Carman's Quote", "[quote]") {
