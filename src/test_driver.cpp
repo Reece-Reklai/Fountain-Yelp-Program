@@ -57,8 +57,7 @@ TEST_CASE("Campus", "[campus]") {
     // Setup
 
     std::ifstream in("Users.txt", std::ios::in | std::ios::binary);
-    std::ifstream in2("Fountains.txt",
-                      std::ios::in | std::ios::binary);
+    std::ifstream in2("Fountains.txt", std::ios::in | std::ios::binary);
     std::ifstream in3("Review.txt", std::ios::in | std::ios::binary);
 
     SECTION("Files have stuff in them") {
