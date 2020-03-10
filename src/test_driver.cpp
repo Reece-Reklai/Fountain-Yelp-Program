@@ -80,30 +80,30 @@ TEST_CASE("Campus", "[campus]") {
     }
     in.close();
 
- /*   // Assign cout to text file
-    std::streambuf *psbuf, *backup;
-    std::ofstream filestr;
-    filestr.open("test.txt");
-    backup = std::cout.rdbuf();  // back up cout's streambuf
+    /*   // Assign cout to text file
+       std::streambuf *psbuf, *backup;
+       std::ofstream filestr;
+       filestr.open("test.txt");
+       backup = std::cout.rdbuf();  // back up cout's streambuf
 
-    psbuf = filestr.rdbuf();  // get file's streambuf
-    std::cout.rdbuf(psbuf);   // assign streambuf to cout
-*/
+       psbuf = filestr.rdbuf();  // get file's streambuf
+       std::cout.rdbuf(psbuf);   // assign streambuf to cout
+   */
     // Now call constructor
     Campus theCampus;
 
- /*   // Restore cout's original streambuf
-    std::cout.rdbuf(backup);
-    filestr.close();
+    /*   // Restore cout's original streambuf
+       std::cout.rdbuf(backup);
+       filestr.close();
 
-    std::ifstream bufout("test.txt");
+       std::ifstream bufout("test.txt");
 
-    std::cout << "Reached section 2\n";
+       std::cout << "Reached section 2\n";
 
-    SECTION("Cout is not empty") {
-        REQUIRE(bufout.good());
-    }
-*/
+       SECTION("Cout is not empty") {
+           REQUIRE(bufout.good());
+       }
+   */
     // Teardown
     std::remove("./src/Users.txt");
     std::remove("./src/Fountains.txt");
