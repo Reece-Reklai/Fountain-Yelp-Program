@@ -42,7 +42,8 @@ build_programs:
   artifacts:
     paths:
       - build/main
-      - build/tests
+      - cd build
+      - tests
     expire_in: 1 hour
 
 tests:
