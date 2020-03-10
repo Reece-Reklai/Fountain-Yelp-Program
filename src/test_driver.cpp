@@ -102,7 +102,8 @@ TEST_CASE("Campus", "[campus]") {
     }
     std::string sLine;
     std::getline(bufout, sLine);
-    std::cout << sLine << endl;
+    std::cout << sLine << "\n";
+    std::cout << "Broken?\n";
 
     bufout.close();
 
