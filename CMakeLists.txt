@@ -5,11 +5,11 @@ set(CMAKE_CXX_STANDARD 17)
 
 include_directories(catch2)
 
-file(COPY ../src/Fountains.txt
+file(COPY ./src/Fountains.txt
      DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
-file(COPY ../src/Review.txt
+file(COPY ./Review.txt
      DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
-file(COPY ../src/Users.txt
+file(COPY ./src/Users.txt
      DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
 
 IF (GENERATE_CODE_COVERAGE)
