@@ -16,9 +16,9 @@
 
 #define CATCH_CONFIG_MAIN
 #include <catch.hpp>
+#include "Campus.h"
 #include "Fountain.h"
 #include "User.h"
-#include "Campus.h"
 
 TEST_CASE("Create a Fountain", "[fountain]") {
     // Setup
