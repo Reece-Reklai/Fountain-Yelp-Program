@@ -58,7 +58,7 @@ TEST_CASE("Campus", "[campus]") {
     cout << "Made it 1\n";
 
     std::ifstream in;
-    in.open("./build/Users.txt");
+    in.open("./src/Users.txt");
 
     SECTION("Users has stuff in it") {
         REQUIRE(in.good());
@@ -66,21 +66,21 @@ TEST_CASE("Campus", "[campus]") {
     std::cout << "Made it 2\n";
 
     in.close();
-    in.open("./build/Fountains.txt");
+    in.open("./src/Fountains.txt");
 
     SECTION("Fountains has stuff in it") {
         REQUIRE(in.good());
     }
 
     in.close();
-    in.open("./build/Review.txt");
+    in.open("./src/Review.txt");
 
     SECTION("Review has stuff in it") {
         REQUIRE(in.good());
     }
     in.close();
 
-    // Assign cout to text file
+ /*   // Assign cout to text file
     std::streambuf *psbuf, *backup;
     std::ofstream filestr;
     filestr.open("test.txt");
@@ -88,11 +88,11 @@ TEST_CASE("Campus", "[campus]") {
 
     psbuf = filestr.rdbuf();  // get file's streambuf
     std::cout.rdbuf(psbuf);   // assign streambuf to cout
-
+*/
     // Now call constructor
     Campus theCampus;
 
-    // Restore cout's original streambuf
+ /*   // Restore cout's original streambuf
     std::cout.rdbuf(backup);
     filestr.close();
 
@@ -103,7 +103,7 @@ TEST_CASE("Campus", "[campus]") {
     SECTION("Cout is not empty") {
         REQUIRE(bufout.good());
     }
-
+*/
     // Teardown
     std::remove("./src/Users.txt");
     std::remove("./src/Fountains.txt");
