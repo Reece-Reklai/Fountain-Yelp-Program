@@ -65,6 +65,7 @@ TEST_CASE("Campus", "[campus]") {
         REQUIRE(in2.good());
         REQUIRE(in3.good());
     }
+    std::cout << "Calling constructor...\n";
 
     // Assign cout to text file
     std::streambuf *psbuf, *backup;
@@ -74,8 +75,6 @@ TEST_CASE("Campus", "[campus]") {
 
     psbuf = filestr.rdbuf();  // get file's streambuf
     std::cout.rdbuf(psbuf);   // assign streambuf to cout
-
-    std::cout << "Calling constructor...\n";
 
     // Now call constructor
     Campus theCampus;
