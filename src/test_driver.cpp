@@ -78,38 +78,11 @@ TEST_CASE("Campus", "[campus]") {
     }
     in.close();
 
-    // Assign cout to text file
-    std::streambuf *psbuf, *backup;
-    std::ofstream filestr;
-    filestr.open("test.txt");
-    backup = std::cout.rdbuf();  // back up cout's streambuf
-
-    psbuf = filestr.rdbuf();  // get file's streambuf
-    std::cout.rdbuf(psbuf);   // assign streambuf to cout
-
     // Now call constructor
     Campus theCampus;
     theCampus.displayFountains();
 
-    // Restore cout's original streambuf
-    std::cout.rdbuf(backup);
-    filestr.close();
-
-    std::ifstream bufout;
-    bufout.open("test.txt");
-
-    SECTION("Cout is not empty") {
-        REQUIRE(bufout.good());
-    }
-    std::string sLine;
-    std::getline(bufout, sLine);
-    std::cout << sLine << "\n";
-    std::cout << "Broken?\n";
-
-    bufout.close();
-
     // Teardown
-    std::remove("test.txt");
 }
 
 TEST_CASE("Campus2", "[campus]") {
