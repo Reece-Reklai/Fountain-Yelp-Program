@@ -75,6 +75,8 @@ TEST_CASE("Campus", "[campus]") {
     psbuf = filestr.rdbuf();  // get file's streambuf
     std::cout.rdbuf(psbuf);   // assign streambuf to cout
 
+    std::cout << "Calling constructor...\n";
+
     // Now call constructor
     Campus theCampus;
 
@@ -83,6 +85,8 @@ TEST_CASE("Campus", "[campus]") {
     filestr.close();
 
     std::ifstream bufout("test.txt", std::ios::in | std::ios::binary);
+
+    std::cout << "Reached section 2\n";
 
     SECTION("Cout is not empty") {
         REQUIRE(bufout.good());
