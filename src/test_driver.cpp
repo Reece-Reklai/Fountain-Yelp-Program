@@ -89,7 +89,7 @@ TEST_CASE("Campus", "[campus]") {
 
     // Now call constructor
     Campus theCampus;
-    theCampus.displayFountains()
+    theCampus.displayFountains();
 
     // Restore cout's original streambuf
     std::cout.rdbuf(backup);
