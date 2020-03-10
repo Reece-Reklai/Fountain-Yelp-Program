@@ -35,9 +35,9 @@ TEST_CASE("Create a Fountain", "[fountain]") {
     theReview->assignFountain(theFountain);
 
     SECTION("Adding a review works") {
-        REQUIRE(theReview->getUser().getId() == "007");
-        REQUIRE(theReview->getUser().getName() == "James Bond");
-        REQUIRE(theReview->getUser().getPasscode() == "yesthisisanothermovie");
+        REQUIRE(theReview->getUser()->getId() == "007");
+        REQUIRE(theReview->getUser()->getName() == "James Bond");
+        REQUIRE(theReview->getUser()->getPasscode() == "yesthisisanothermovie");
         REQUIRE(theReview->getFountain() == theFountain);
     }
     theFountain->addReview(theReview);
@@ -49,32 +49,14 @@ TEST_CASE("Create a Fountain", "[fountain]") {
     delete theUser;
 }
 
-TEST_CASE("Professor Carman's Quote", "[quote]") {
+TEST_CASE("main", "[main]") {
     // Setup
-    Quotes myQuote(9);
-
-    Quote quote = myQuote.getQuote(15);
-
-    SECTION("Get Quote") {
-        REQUIRE(quote.student == "Preston Carman");
-        REQUIRE(quote.quote == "Talk is cheap. Show me the code.");
-        REQUIRE(quote.author == "Linus Torvalds");
-    }
 
     // Teardown
 }
 
-TEST_CASE("Professor Carman's Quote", "[quote]") {
+TEST_CASE("Campus", "[campus") {
     // Setup
-    Quotes myQuote(9);
-
-    Quote quote = myQuote.getQuote(15);
-
-    SECTION("Get Quote") {
-        REQUIRE(quote.student == "Preston Carman");
-        REQUIRE(quote.quote == "Talk is cheap. Show me the code.");
-        REQUIRE(quote.author == "Linus Torvalds");
-    }
 
     // Teardown
 }
