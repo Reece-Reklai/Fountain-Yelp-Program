@@ -57,21 +57,21 @@ TEST_CASE("Campus", "[campus]") {
     // Setup
 
     std::ifstream in;
-    in.open("./src/Users.txt");
+    in.open("./build/Users.txt");
 
     SECTION("Users has stuff in it") {
         REQUIRE(in.good());
     }
 
     in.close();
-    in.open("./src/Fountains.txt");
+    in.open("./build/Fountains.txt");
 
     SECTION("Fountains has stuff in it") {
         REQUIRE(in.good());
     }
 
     in.close();
-    in.open("./src/Review.txt");
+    in.open("./build/Review.txt");
 
     SECTION("Review has stuff in it") {
         REQUIRE(in.good());
