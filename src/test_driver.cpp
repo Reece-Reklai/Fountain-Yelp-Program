@@ -61,10 +61,10 @@ TEST_CASE("Campus", "[campus]") {
                       std::ios::in | std::ios::binary);
     std::ifstream in3("../../src/Review.txt", std::ios::in | std::ios::binary);
 
-    SECTION("Files exist") {
-        REQUIRE(!in.eof());
-        REQUIRE(!in2.eof());
-        REQUIRE(!in3.eof());
+    SECTION("Files have stuff in them") {
+        REQUIRE(in.peek() != std::ifstream::traits_type::eof());
+        REQUIRE(in2.peek() != std::ifstream::traits_type::eof());
+        REQUIRE(in3.peek() != std::ifstream::traits_type::eof());
     }
 
     // Move appropriate files to build directory
@@ -81,9 +81,9 @@ TEST_CASE("Campus", "[campus]") {
     std::ifstream nin3("Review.txt", std::ios::in | std::ios::binary);
 
     SECTION("New files exist") {
-        REQUIRE(!nin.eof());
-        REQUIRE(!nin2.eof());
-        REQUIRE(!nin3.eof());
+        REQUIRE(nin.peek() != std::ifstream::traits_type::eof());
+        REQUIRE(nin2.peek() != std::ifstream::traits_type::eof());
+        REQUIRE(nin3.peek() != std::ifstream::traits_type::eof());
     }
 
     // Assign cout to text file
@@ -103,13 +103,9 @@ TEST_CASE("Campus", "[campus]") {
     filestr.close();
 
     std::ifstream bufout("test.txt", std::ios::in | std::ios::binary);
-    std::string sLine;
-    if (!bufout.eof()) {
-        getline(bufout, sLine);
-    }
 
-    SECTION("Stuff is printed") {
-        REQUIRE(sLine != "");
+    SECTION("Cout is not empty") {
+        REQUIRE(bufout.peek() != std::ifstream::traits_type::eof());
     }
 
     // Teardown
