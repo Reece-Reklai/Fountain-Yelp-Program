@@ -54,41 +54,41 @@ TEST_CASE("Create a Fountain", "[fountain]") {
 }
 
 TEST_CASE("Campus", "[campus]") {
-    // Setup
-    cout << "Made it 1\n";
+    /*    // Setup
+        cout << "Made it 1\n";
 
-    std::ifstream in;
-    in.open("./src/Users.txt");
+        std::ifstream in;
+        in.open("./src/Users.txt");
 
-    SECTION("Users has stuff in it") {
-        REQUIRE(in.good());
-    }
-    std::cout << "Made it 2\n";
+        SECTION("Users has stuff in it") {
+            REQUIRE(in.good());
+        }
+        std::cout << "Made it 2\n";
 
-    in.close();
-    in.open("./src/Fountains.txt");
+        in.close();
+        in.open("./src/Fountains.txt");
 
-    SECTION("Fountains has stuff in it") {
-        REQUIRE(in.good());
-    }
+        SECTION("Fountains has stuff in it") {
+            REQUIRE(in.good());
+        }
 
-    in.close();
-    in.open("./src/Review.txt");
+        in.close();
+        in.open("./src/Review.txt");
 
-    SECTION("Review has stuff in it") {
-        REQUIRE(in.good());
-    }
-    in.close();
+        SECTION("Review has stuff in it") {
+            REQUIRE(in.good());
+        }
+        in.close();
 
-    /*   // Assign cout to text file
-       std::streambuf *psbuf, *backup;
-       std::ofstream filestr;
-       filestr.open("test.txt");
-       backup = std::cout.rdbuf();  // back up cout's streambuf
+        /*   // Assign cout to text file
+           std::streambuf *psbuf, *backup;
+           std::ofstream filestr;
+           filestr.open("test.txt");
+           backup = std::cout.rdbuf();  // back up cout's streambuf
 
-       psbuf = filestr.rdbuf();  // get file's streambuf
-       std::cout.rdbuf(psbuf);   // assign streambuf to cout
-   */
+           psbuf = filestr.rdbuf();  // get file's streambuf
+           std::cout.rdbuf(psbuf);   // assign streambuf to cout
+       */
     // Now call constructor
     Campus theCampus;
 
@@ -104,11 +104,12 @@ TEST_CASE("Campus", "[campus]") {
            REQUIRE(bufout.good());
        }
    */
-    // Teardown
+/*  // Teardown
     std::remove("./src/Users.txt");
     std::remove("./src/Fountains.txt");
     std::remove("./src/Review.txt");
     std::remove("./src/test.txt");
+    */
 }
 
 TEST_CASE("Campus2", "[campus]") {
