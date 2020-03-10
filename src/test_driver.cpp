@@ -61,9 +61,9 @@ TEST_CASE("Campus", "[campus]") {
     std::ifstream in3("Review.txt", std::ios::in | std::ios::binary);
 
     SECTION("Files have stuff in them") {
-        REQUIRE(in.good());
-        REQUIRE(in2.good());
-        REQUIRE(in3.good());
+        REQUIRE(in);
+        REQUIRE(in2);
+        REQUIRE(in3);
     }
 
     // Move appropriate files to build directory
