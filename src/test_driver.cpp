@@ -55,7 +55,7 @@ TEST_CASE("Create a Fountain", "[fountain]") {
 
 TEST_CASE("Campus", "[campus]") {
     // Setup
-    std::cout << "Made it 1\n";
+    cout << "Made it 1\n";
 
     std::ifstream in;
     in.open("./build/Users.txt");
