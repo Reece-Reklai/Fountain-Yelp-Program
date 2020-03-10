@@ -55,36 +55,20 @@ TEST_CASE("Create a Fountain", "[fountain]") {
 
 TEST_CASE("Campus", "[campus]") {
     // Setup
+    std::string a = "Users.txt";
+    std::string b = "Fountains.txt";
+    std::string c = "Review.txt";
 
-    std::ifstream in("Users.txt".c_str(), std::ios::in | std::ios::binary);
-    std::ifstream in2("Fountains.txt".c_str(), std::ios::in | std::ios::binary);
-    std::ifstream in3("Review.txt".c_str(), std::ios::in | std::ios::binary);
+    std::ifstream in(a.c_str(), std::ios::in | std::ios::binary);
+    std::ifstream in2(b.c_str(), std::ios::in | std::ios::binary);
+    std::ifstream in3(c.c_str(), std::ios::in | std::ios::binary);
 
     SECTION("Files have stuff in them") {
         REQUIRE(in.good());
         REQUIRE(in2.good());
         REQUIRE(in3.good());
     }
-
-    // Move appropriate files to build directory
-    std::ofstream out("Users.txt", std::ios::out | std::ios::binary);
-    out << in.rdbuf();
-    std::ofstream out2("Fountains.txt", std::ios::out | std::ios::binary);
-    out2 << in2.rdbuf();
-    std::ofstream out3("Review.txt", std::ios::out | std::ios::binary);
-    out3 << in3.rdbuf();
-
-    // Open new files
-    std::ifstream nin("Users.txt", std::ios::in | std::ios::binary);
-    std::ifstream nin2("Fountains.txt", std::ios::in | std::ios::binary);
-    std::ifstream nin3("Review.txt", std::ios::in | std::ios::binary);
-
-    SECTION("New files exist") {
-        REQUIRE(nin.good());
-        REQUIRE(nin2.good());
-        REQUIRE(nin3.good());
-    }
-
+    
     // Assign cout to text file
     std::streambuf *psbuf, *backup;
     std::ofstream filestr;
