@@ -68,7 +68,7 @@ TEST_CASE("Campus", "[campus]") {
         REQUIRE(in2.good());
         REQUIRE(in3.good());
     }
-    
+
     // Assign cout to text file
     std::streambuf *psbuf, *backup;
     std::ofstream filestr;
