@@ -78,15 +78,5 @@ TEST_CASE("Campus", "[campus]") {
     }
     in.close();
 
-    // Now call constructor
-    Campus theCampus;
-    theCampus.displayFountains();
-
-    // Teardown
-}
-
-TEST_CASE("Campus2", "[campus]") {
-    // Setup
-
     // Teardown
 }
