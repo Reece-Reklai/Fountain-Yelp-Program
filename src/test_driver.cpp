@@ -8,3 +8,10 @@
  * Date:            ?
  *
  */
+#include "Put_In_File.cpp"
+
+int main () {
+    Put_In_File ("TEST.txt", "Hello!");
+
+    return 0;
+}
