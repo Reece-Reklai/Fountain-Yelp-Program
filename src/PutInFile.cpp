@@ -1,9 +1,10 @@
+#include "PutInFile.h"
 #include <fstream>
 #include <string>
 
 using namespace std;
 
-void Put_In_File (string File_Name, string content) {
+void PutInFile (string File_Name, string content) {
     // Purpose:
     //  To take information, and add it to an existing file.
     // Parameters:

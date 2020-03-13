@@ -12,8 +12,9 @@ int main() {
           "fountains(WWUP)"
        << endl;
   while (yuh) {
+
     int choice;
-    string stChoice;
+    string stChoice, username, password;
     cout << "Here are your optinons" << endl
          << "----------------------" << endl
          << "1) Display All Fountains\n2) Select a Fountain\n3) Log in\n4) "
@@ -30,6 +31,16 @@ int main() {
       wwup.printFountain(stChoice);
       break;
     case 3:
+      cin >> username;
+      cin >> password;
+      wwup.login(username, password);
+      break;
+    case 4:
+      cin >> username;
+      cin >> password;
+      wwup.signUp(username, password);
+      break;
+    case 5:
       yuh = false;
       break;
     }
