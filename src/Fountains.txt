@@ -1,5 +1,2 @@
-42|Rigby hall|Rigby157
-1|Connard Lobby|Connard123
-3|Sittner hall|Sittner445
-2252|Bowers hall|bowers357
-67695|WWU Library|LibLoby
+41077|Sittner Lobby|Sittner1
+15869|Rigby Hall|Rigby 141

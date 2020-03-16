@@ -20,18 +20,21 @@ using namespace std;
 
 int main() {
   bool isRunning = true;
-  int choice, rating;
-  string username, password, id, header, content;
+  int choice, rating, cred;
+  int credLevel = 0;
+  string username, password, id, header, content, location, name;
   Campus wwup;
   cout << "Welcome to WWUP!" << endl << "________________" << endl;
   while (isRunning) {
     cout << "1) Log In\n2) Sign Up\n3) Display All Fountains\n4) View A "
-            "Fountain\n5) Write A Review\n6) View Profile\n7) Log Out\n8) Quit "
+            "Fountain\n5) Write A Review\n6) View Profile\n7) Log Out\n8) "
+            "Admin Tools\n9) Quit "
             "Program\n"
-         << endl;
+         << endl
+         << "Choice: ";
     cin >> choice;
     try {
-      errorCheck(choice, 1, 8);
+      errorCheck(choice, 1, 9);
     } catch (exception &e) {
       cerr << e.what() << endl << "Try Again" << endl;
       continue;
@@ -91,9 +94,10 @@ int main() {
         continue;
       }
       cout << "Write a Header to Your Review: ";
-      cin >> header;
+      cin.ignore();
+      getline(cin, header);
       cout << "Write The Body of Your Review: ";
-      cin >> content;
+      getline(cin, content);
       try {
         wwup.writeReview(id, rating, header, content);
       } catch (exception &e) {
@@ -111,8 +115,82 @@ int main() {
       break;
     case 7:
       wwup.logout();
+      credLevel = 0;
       break;
     case 8:
+      try {
+        credLevel = wwup.checkCred();
+      } catch (exception &e) {
+        cerr << e.what() << endl;
+        continue;
+      }
+      if (credLevel > 1) {
+        bool adminTools = true;
+        while (adminTools) {
+          cout << "welcome to Admin Tools" << endl
+               << "1) Add Fountain\n2) Set Privileges\n3) Quit Admin Tools\n"
+               << endl
+               << "Choice: ";
+          cin >> choice;
+          try {
+            errorCheck(choice, 1, 3);
+          } catch (exception &e) {
+            cerr << e.what() << endl;
+            continue;
+          }
+          switch (choice) {
+          case 1:
+            if (credLevel < 2) {
+              cerr << "You Are Not Authorized" << endl;
+              continue;
+            }
+            cout << "Enter the fountain location: ";
+            cin.ignore();
+            getline(cin, location);
+            cout << "Enter the fountain name: ";
+            getline(cin, name);
+            try {
+              wwup.addFountain(location, name);
+              cout << "Fountain Successfully Added" << endl;
+            } catch (exception &e) {
+              cerr << e.what() << endl;
+              continue;
+            }
+            break;
+          case 2:
+            if (credLevel < 3) {
+              cerr << "You Are Not Authorized" << endl;
+              continue;
+            }
+            cout << "Enter the ID of the user you would like to change: ";
+            cin >> id;
+            cout << "Enter the desired credential level(1-3): ";
+            cin >> cred;
+            try {
+              errorCheck(cred, 1, 3);
+            } catch (exception &e) {
+              cerr << e.what() << endl;
+              continue;
+            }
+            try {
+              wwup.changeCred(id, cred);
+              wwup.reInitializeUsers();
+            } catch (exception &e) {
+              cerr << e.what() << endl;
+              continue;
+            }
+            break;
+          case 3:
+            adminTools = false;
+            break;
+          }
+        }
+      } else {
+        cerr << "You Are Not Authorized" << endl;
+        continue;
+      }
+      break;
+    case 9:
       return 1;
       break;
     }

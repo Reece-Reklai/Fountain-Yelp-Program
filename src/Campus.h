@@ -22,7 +22,9 @@ public:
                               // their ID numbers
   void printFountain(string); // Prints a fountain's reviews given its ID number
   void printSignedUser();
-
+  int checkCred();
+  void changeCred(string, int);
+void reInitializeUsers();
   void login(string, string);
   void logout();
   void signUp(string, string);
@@ -41,7 +43,7 @@ private:
   map<string, User *> userById;
   map<string, User *> userByName;
   map<string, Fountain *> fountainById;
-  map<string, Fountain*> fountainByName;
+  map<string, Fountain *> fountainByName;
   User *signedUser;
   bool isLogged;
 };

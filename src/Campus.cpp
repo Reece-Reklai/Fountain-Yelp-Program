@@ -188,7 +188,7 @@ void Campus::printSignedUser() {
          << "ID: " << signedUser->getId() << endl
          << "Cred Level: " << signedUser->getCred() << endl;
   } else {
-throw runtime_error("You Are Not Logged In");
+    throw runtime_error("You Are Not Logged In");
   }
 }
 
@@ -212,6 +212,9 @@ void Campus::writeReview(string fountain, int rating, string header,
 }
 
 void Campus::addFountain(string location, string name) {
+  if (fountainByName.count(name)) {
+    throw runtime_error("A Fountain With That Name Already Exists");
+  }
   string newId = createId();
   while (fountainById.count(newId)) {
     newId = createId();
@@ -220,4 +223,28 @@ void Campus::addFountain(string location, string name) {
   fountainById.emplace(newId, Flist.back());
   fountainByName.emplace(name, Flist.back());
   PutInFile("Fountains.txt", formatString(Flist.back()));
+}
+
+int Campus::checkCred() {
+  if (!isLogged) {
+    throw runtime_error("You Are Not Logged In");
+  }
+  return signedUser->getCred();
+}
+
+void Campus::changeCred(string id, int cred) {
+  if (!userById.count(id)) {
+    throw runtime_error("There Is No Such User");
+  }
+  userById.at(id)->setCred(cred);
+}
+void Campus::reInitializeUsers() {
+  ofstream fout;
+  vector<User *>::iterator i;
+  fout.open("Users.txt");
+  for (i = Ulist.begin(); i < (Ulist.end() - 1); i++) {
+    fout << formatString(*i) << endl;
+  }
+  fout << formatString(Ulist.back());
+  fout.close();
 }
