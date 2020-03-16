@@ -14,7 +14,9 @@ public:
                             // revList vector
   string getName();    // returns the fountain's name
   string getId();      // returns the fountain's ID number
+  string getLocation();
   void printReviews(); // Prints the content of the fountain's reviews
+  double computeRating();
 
 private:
   vector<Review *>

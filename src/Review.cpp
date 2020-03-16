@@ -20,3 +20,6 @@ void Review::printReview() {
        << header << endl
        << content << endl;
 }
+int Review::getRating() { return rating; }
+string Review::getHeader() { return header; }
+string Review::getContent() { return content; }

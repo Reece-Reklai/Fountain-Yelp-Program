@@ -18,9 +18,11 @@ int main() {
     cout << "Here are your optinons" << endl
          << "----------------------" << endl
          << "1) Display All Fountains\n2) Select a Fountain\n3) Log in\n4) "
-            "Sign up"
+            "Sign up\n5)End Program\n6)Print Logged in user\n7)add rating"
          << endl;
     cin >> choice;
+    string fount, header, content, name, location;
+    int rating;
     switch (choice) {
     case 1:
       wwup.displayFountains();
@@ -42,6 +44,29 @@ int main() {
       break;
     case 5:
       yuh = false;
+      break;
+    case 6:
+      wwup.printSignedUser();
+      break;
+    case 7:
+      cout << "Fountain id: ";
+      cin >> fount;
+      cout << "Rating: ";
+      cin >> rating;
+      cout << "Header: ";
+      cin.ignore();
+      getline(cin, header);
+      cout << "Content: ";
+      getline(cin, content);
+      wwup.writeReview(fount, rating, header, content);
+      break;
+    case 8:
+      cout << "what's the fuken location: ";
+      cin.ignore();
+      getline(cin, location);
+      cout << "Gimme the gosh darn diggity name: ";
+      getline(cin, name);
+      wwup.addFountain(location, name);
       break;
     }
   }

@@ -1,13 +1,11 @@
 #include "Campus.h"
-#include "PutInFile.h"
-#include "StringCreate.h"
 #include <fstream>
 #include <iostream>
 #include <sstream>
 #include <string>
 using namespace std;
-
 Campus::Campus() {
+  isLogged = false;
   int index;
   ifstream fin;
   fin.open("Users.txt");
@@ -34,6 +32,7 @@ Campus::Campus() {
     getline(fin, name, '\n');
     Flist.push_back(new Fountain(id, location, name));
     fountainById.emplace(id, Flist.at(index));
+    fountainByName.emplace(name, Flist.at(index));
     index++;
   }
   fin.close();
@@ -63,32 +62,38 @@ Campus::Campus() {
   }
   fin.close();
 }
+
 void Campus::printUList() {
   for (auto i : Ulist) {
     i->printUser();
   }
 }
+
 void Campus::printFList() {
   for (auto i : Flist) {
     i->printFountain();
   }
 }
+
 void Campus::printRlist() {
   for (auto i : Rlist) {
     i->printReview();
   }
 }
+
 void Campus::displayFountains() {
   cout << "Name: ID" << endl;
   for (auto i : Flist) {
-    cout << i->getName() << ": " << i->getId() << endl;
+    cout << i->getName() << " : " << i->getId() << " : " << i->computeRating()
+         << endl;
   }
 }
-void Campus::printFountain(string id) {
 
+void Campus::printFountain(string id) {
   cout << "--------------------" << endl
-       << fountainById.at(id)->getName() << ": " << fountainById.at(id)->getId()
-       << endl
+       << fountainById.at(id)->getName() << " : "
+       << fountainById.at(id)->getId() << " : "
+       << fountainById.at(id)->computeRating() << endl
        << "____________________" << endl;
   fountainById.at(id)->printReviews();
 }
@@ -97,6 +102,7 @@ void Campus::login(string username, string password) {
   if (userByName.count(username)) {
     if (userByName.at(username)->getPasscode() == password) {
       signedUser = userByName.at(username);
+      isLogged = true;
     } else {
       throw runtime_error("Incorrect Password!");
     }
@@ -105,12 +111,14 @@ void Campus::login(string username, string password) {
   }
 }
 
-void Campus::logout() { signedUser = NULL; }
+void Campus::logout() {
+  signedUser = NULL;
+  isLogged = false;
+}
 
 void Campus::signUp(string username, string password) {
   if (userByName.count(username)) {
-    throw runtime_error("Exuse me, but it seems as though a user going by "
-                        "this name already exists");
+    throw runtime_error("A User By This Name Already Exists");
   } else {
     string newId = createId();
     while (userById.count(newId)) {
@@ -119,6 +127,70 @@ void Campus::signUp(string username, string password) {
     Ulist.push_back(new User(newId, username, password, 1));
     userById.emplace(newId, Ulist.back());
     userByName.emplace(username, Ulist.back());
-    PutInFile("Users.txt", formatUserString(Ulist.back()));
+    PutInFile("Users.txt", formatString(Ulist.back()));
   }
+}
+
+string Campus::formatString(User *out) {
+  return to_string(out->getCred()) + '|' + out->getId() + '|' + out->getName() +
+         '|' + out->getPasscode();
+}
+
+string Campus::formatString(Fountain *out) {
+  return out->getId() + "|" + out->getLocation() + "|" + out->getName();
+}
+
+string Campus::formatString(Review *out) {
+  return out->getUser()->getId() + "|" + out->getFountain()->getId() + "|" +
+         to_string(out->getRating()) + "|" + out->getHeader() + "|" +
+         out->getContent();
+}
+
+string Campus::createId() {
+  srand(time(NULL));
+  int newId1 = rand() % 10;
+  string newId;
+  for (int i = 1; i <= 4; i++) {
+    newId1 += ((rand() % 10) * pow(10, i));
+  }
+  newId = to_string(newId1);
+  return newId;
+}
+
+void Campus::PutInFile(string File_Name, string content) {
+  ofstream Outfile;
+  Outfile.open(File_Name, ios_base::app);
+  Outfile << '\n' << content;
+  return;
+}
+
+void Campus::printSignedUser() {
+  if (isLogged) {
+    cout << "Name: " << signedUser->getName() << endl
+         << "Password: " << signedUser->getPasscode() << endl
+         << "ID: " << signedUser->getId() << endl
+         << "Cred Level: " << signedUser->getCred() << endl;
+  } else {
+    cout << "no way" << endl;
+  }
+}
+
+void Campus::writeReview(string fountain, int rating, string header,
+                         string content) {
+  Rlist.push_back(new Review(header, content, rating));
+  Rlist.back()->assignFountain(fountainById.at(fountain));
+  Rlist.back()->assignUser(signedUser);
+  fountainById.at(fountain)->addReview(Rlist.back());
+  signedUser->addReview(Rlist.back());
+  PutInFile("Review.txt", formatString(Rlist.back()));
+}
+void Campus::addFountain(string location, string name) {
+  string newId = createId();
+  while (fountainById.count(newId)) {
+    newId = createId();
+  }
+  Flist.push_back(new Fountain(newId, location, name));
+  fountainById.emplace(newId, Flist.back());
+  fountainByName.emplace(name, Flist.back());
+  PutInFile("Fountains.txt", formatString(Flist.back()));
 }

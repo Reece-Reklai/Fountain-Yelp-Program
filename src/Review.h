@@ -17,6 +17,9 @@ public:
   void printReview();              // displays relevnt information on the Review
   User *getUser();                 // returns a pointer to the linked user
   Fountain *getFountain();         // returns a pointer to the linked Fountain
+  int getRating();
+  string getHeader();
+  string getContent();
 
 private:
   User *user;         // points to the user who wrote the review
