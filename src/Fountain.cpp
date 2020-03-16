@@ -17,14 +17,20 @@ string Fountain::getName() { return name; }
 string Fountain::getId() { return id; }
 string Fountain::getLocation() { return location; }
 void Fountain::printReviews() {
+  int index = 1;
   for (auto i : revList) {
+    cout << index << ") ";
     i->printReview();
     cout << "____________________" << endl;
+    index++;
   }
 }
 double Fountain::computeRating() {
   double totalStars = 0;
   double actualRating;
+  if (revList.size() == 0) {
+    throw runtime_error("No Reviews Yet");
+  }
   for (auto i : revList) {
     totalStars += i->getRating();
   }

@@ -15,8 +15,7 @@ void Review::assignFountain(Fountain *fountain) { this->fountain = fountain; }
 User *Review::getUser() { return user; }
 Fountain *Review::getFountain() { return fountain; }
 void Review::printReview() {
-  cout << "Written By: " << user->getName() << " - Rating: " << rating << "/5"
-       << endl
+  cout << user->getName() << " - Rating: " << rating << "/5" << endl
        << header << endl
        << content << endl;
 }

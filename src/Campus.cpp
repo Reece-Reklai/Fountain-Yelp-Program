@@ -1,4 +1,5 @@
 #include "Campus.h"
+#include <exception>
 #include <fstream>
 #include <iostream>
 #include <sstream>
@@ -70,6 +71,7 @@ void Campus::printUList() {
 }
 
 void Campus::printFList() {
+  int index = 1;
   for (auto i : Flist) {
     i->printFountain();
   }
@@ -82,14 +84,30 @@ void Campus::printRlist() {
 }
 
 void Campus::displayFountains() {
-  cout << "Name: ID" << endl;
+  int index = 1;
   for (auto i : Flist) {
-    cout << i->getName() << " : " << i->getId() << " : " << i->computeRating()
-         << endl;
+    try {
+      i->computeRating();
+      cout << index << ") " << i->getName() << " : " << i->computeRating()
+           << "/" << 5 << endl
+           << "   Location: " << i->getLocation() << endl
+           << "   ID: " << i->getId() << endl
+           << endl;
+      index++;
+    } catch (exception &e) {
+      cout << index << ") " << i->getName() << " : " << e.what() << endl
+           << "   Location: " << i->getLocation() << endl
+           << "   ID: " << i->getId() << endl
+           << endl;
+      index++;
+    }
   }
 }
 
 void Campus::printFountain(string id) {
+  if (!fountainById.count(id)) {
+    throw runtime_error("This ID Does Not Belong to Any Fountain");
+  }
   cout << "--------------------" << endl
        << fountainById.at(id)->getName() << " : "
        << fountainById.at(id)->getId() << " : "
@@ -104,10 +122,10 @@ void Campus::login(string username, string password) {
       signedUser = userByName.at(username);
       isLogged = true;
     } else {
-      throw runtime_error("Incorrect Password!");
+      throw runtime_error("Incorrect Password");
     }
   } else {
-    throw runtime_error("Could not find the user");
+    throw runtime_error("Could Not Find User");
   }
 }
 
@@ -167,16 +185,24 @@ void Campus::PutInFile(string File_Name, string content) {
 void Campus::printSignedUser() {
   if (isLogged) {
     cout << "Name: " << signedUser->getName() << endl
-         << "Password: " << signedUser->getPasscode() << endl
          << "ID: " << signedUser->getId() << endl
          << "Cred Level: " << signedUser->getCred() << endl;
   } else {
-    cout << "no way" << endl;
+throw runtime_error("You Are Not Logged In");
   }
 }
 
 void Campus::writeReview(string fountain, int rating, string header,
                          string content) {
+  if (!fountainById.count(fountain)) {
+    throw runtime_error("A Fountain By This ID Does Not Exist");
+  }
+  if (rating < 0 || rating > 5) {
+    throw runtime_error("Rating Must Be Within 0 To 5");
+  }
+  if (!isLogged) {
+    throw runtime_error("You Are Not Logged In");
+  }
   Rlist.push_back(new Review(header, content, rating));
   Rlist.back()->assignFountain(fountainById.at(fountain));
   Rlist.back()->assignUser(signedUser);
@@ -184,6 +210,7 @@ void Campus::writeReview(string fountain, int rating, string header,
   signedUser->addReview(Rlist.back());
   PutInFile("Review.txt", formatString(Rlist.back()));
 }
+
 void Campus::addFountain(string location, string name) {
   string newId = createId();
   while (fountainById.count(newId)) {
