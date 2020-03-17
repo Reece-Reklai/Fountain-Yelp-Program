@@ -1,3 +1,2 @@
-42|Rigby hall|Rigby157
-1|Connard Lobby|Connard123
-3|Sittner hall|Sittner445
+41077|Sittner Lobby|Sittner1
+15869|Rigby Hall|Rigby 141
