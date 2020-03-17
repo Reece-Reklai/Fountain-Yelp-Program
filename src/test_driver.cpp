@@ -35,8 +35,7 @@ TEST_CASE("Create a Fountain", "[fountain]") {
     Review* theReview = new Review(
         "Not a good place for a date",
         "I asked my girlfriend to join me but she never showed up", 0);
-    User* theUser =
-        new User("007", "James Bond", "yesthisisanothermovie", 4);
+    User* theUser = new User("007", "James Bond", "yesthisisanothermovie", 4);
     theReview->assignUser(theUser);
     theReview->assignFountain(theFountain);
 
