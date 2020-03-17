@@ -43,7 +43,7 @@ build_programs:
     - cd build
     - cmake ..
     - make
-    - zip -r kimgab.zip ${CI_PROJECT_DIR}
+    - zip -r kimgab.zip ${CI_PROJECT_DIR}/build
   artifacts:
     paths:
       - build/main
@@ -51,7 +51,7 @@ build_programs:
       - build/Users.txt
       - build/Fountains.txt
       - build/Review.txt
-      - kimgab.zip
+      - build/kimgab.zip
     expire_in: 1 hour
 
 tests:
