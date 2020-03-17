@@ -23,16 +23,14 @@ ENDIF()
 add_executable(main
         ./src/main.cpp
         ./src/Campus.cpp
-        ./src/CredentialFunctions.cpp
-        ./src/Error_Checking.cpp
+        ./src/ErrorCheck.cpp
         ./src/Fountain.cpp
         ./src/Review.cpp
         ./src/User.cpp)
 add_executable(tests
         ./src/test_driver.cpp
         ./src/Campus.cpp
-        ./src/CredentialFunctions.cpp
-        ./src/Error_Checking.cpp
+        ./src/ErrorCheck.cpp
         ./src/Fountain.cpp
         ./src/Review.cpp
         ./src/User.cpp)

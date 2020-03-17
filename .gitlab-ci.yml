@@ -5,7 +5,8 @@ stages:
   - build
   - test
   - coverage
-  - deploy
+  - deploy_web
+  - deploy_prod
 
 check_formatting:
   stage: analysis
@@ -34,11 +35,15 @@ run_cppcheck:
 
 build_programs:
   stage: build
+  before_script:
+    - apt-get -qq update
+    - apt-get -qq -y zip unzip
   script:
     - mkdir build
     - cd build
     - cmake ..
     - make
+    - zip -r kimgab.zip ${CI_PROJECT_DIR}
   artifacts:
     paths:
       - build/main
@@ -46,6 +51,7 @@ build_programs:
       - build/Users.txt
       - build/Fountains.txt
       - build/Review.txt
+      - kimgab.zip
     expire_in: 1 hour
 
 tests:
@@ -99,7 +105,7 @@ test:
 
 pages:
   image: ruby:2.3
-  stage: deploy
+  stage: deploy_web
   script:
     - bundle install
     - cd docs
@@ -110,3 +116,26 @@ pages:
       - public
   only:
     - platan/cd
+
+deploy_prod:
+  stage: deploy_prod
+  before_script:
+    - apt-get -qq update
+    - apt-get -qq -y install curl
+    - 'which ssh-agent || ( apt-get install -qq openssh-client )'
+    - eval $(ssh-agent -s)
+    - ssh-add <(echo "$SSH_PRIVATE_KEY" | base64 -d -w 0)
+    - mkdir -p ~/.ssh
+    - '[[ -f /.dockerenv ]] && echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config'
+  script:
+    - ELF_NAME="${CI_PROJECT_NAMESPACE}-ex.zip"
+    # Double quotes around everything needed as it has a colon in it
+    - "SSH_COMMAND_STRING=\"curl --location --header 'PRIVATE-TOKEN: ${API_TOKEN}' '${CI_API_V4_URL}/projects/${CI_PROJECT_ID}/jobs/artifacts/${CI_BUILD_REF_NAME}/raw/kimgab.zip?job=build_archive' --output ${ELF_NAME}\" "
+    # Print it out so we can see what happened for debugging purposes.
+    - echo "$SSH_COMMAND_STRING"
+    # Execute the deploy
+    - ssh $SSH_USER@$SSH_HOST "${SSH_COMMAND_STRING}"
+  when: manual
+  only:
+    - platan/cd
+
