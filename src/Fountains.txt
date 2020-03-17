@@ -1,2 +1,6 @@
-41077|Sittner Lobby|Sittner1
-15869|Rigby Hall|Rigby 141
+41077|Sittner Lobby|Sittner Lobby
+15869|Rigby Hall|Rigby Second Floor
+63712|Bowers Hall|Bower Lobby
+87611|Kretschmar Hall|Kretschmar Third Floor
+4705|WEC|WEC Weight Hallway
+10182|University Church|U Church Lobby
