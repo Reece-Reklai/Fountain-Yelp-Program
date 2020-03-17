@@ -16,6 +16,7 @@
 
 #define CATCH_CONFIG_MAIN
 #include <catch.hpp>
+
 #include "Campus.h"
 #include "Fountain.h"
 #include "User.h"
@@ -34,7 +35,8 @@ TEST_CASE("Create a Fountain", "[fountain]") {
     Review* theReview = new Review(
         "Not a good place for a date",
         "I asked my girlfriend to join me but she never showed up", 0);
-    User* theUser = new User("007", "James Bond", "yesthisisanothermovie");
+    User* theUser =
+        new User("007", "James Bond", "yesthisisanothermovie", 4);
     theReview->assignUser(theUser);
     theReview->assignFountain(theFountain);
 
@@ -42,6 +44,7 @@ TEST_CASE("Create a Fountain", "[fountain]") {
         REQUIRE(theReview->getUser()->getId() == "007");
         REQUIRE(theReview->getUser()->getName() == "James Bond");
         REQUIRE(theReview->getUser()->getPasscode() == "yesthisisanothermovie");
+        REQUIRE(theReview->getUser()->getCred() == 4);
         REQUIRE(theReview->getFountain() == theFountain);
     }
     theFountain->addReview(theReview);
