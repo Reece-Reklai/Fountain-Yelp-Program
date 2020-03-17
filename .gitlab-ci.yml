@@ -37,7 +37,7 @@ build_programs:
   stage: build
   before_script:
     - apt-get -qq update
-    - apt-get -qq -y zip unzip
+    - apt-get -qq install -y zip unzip
   script:
     - mkdir build
     - cd build
