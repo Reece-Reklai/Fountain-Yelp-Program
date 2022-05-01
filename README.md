@@ -1,5 +1,3 @@
 # CPTR 142: Project III
 
-Add information about your project.
-Such as detailed description, known bugs and user operation instructions.
-This is the file a user will first look at when attempting to run your program.
+This is a group project done that was inspired by YELP reviews. This program uses c++ classes to allow users to add new fountain locations around campus and create a review for it using their account. 
